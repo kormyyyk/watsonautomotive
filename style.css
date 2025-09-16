@@ -56,7 +56,6 @@ nav a:hover { color: #d62828; }
   align-items: center;
   text-align: center;
   overflow: visible;
-  margin-top: 0;
 }
 
 .hero-background {
@@ -136,60 +135,6 @@ nav a:hover { color: #d62828; }
   cursor: pointer;
 }
 
-/* Pricing */
-  .pricing {
-    background-color: #fff;
-    padding: 60px 50px;
-    text-align: center;
-  }
-  
-.pricing h2 {
-    font-size: 28px;
-  margin-bottom: 20px;
-  color: #d62828;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-  margin-top: 70px; /* odsazení od horního okraje obdélníku */
-}
-  
-  .table-wrapper {
-    overflow-x: auto;
-  }
-  
-  .price-table {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 830px;
-    border-collapse: collapse;
-    font-size: 16px;
-    background-color: #fafafa;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  }
-  
-  .price-table thead {
-    background-color: #f2f2f2;
-  }
-  
-  .price-table th, .price-table td {
-    padding: 15px 20px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .price-table tr:hover {
-    background-color: #f9f9f9;
-  }
-
-/* Zabránění zalamování textu u všech buněk */
-.price-table th, .price-table td {
-    white-space: nowrap; /* zabrání zalamování textu */
-}
-
-/* Nebo jen pro sloupec Ceny – pokud má třídu price-cell */
-.price-table td.price-cell {
-    width: 150px;        /* nastavení šířky konkrétní buňky/sloupce */
-    white-space: nowrap; /* zabrání zalamování */
-}
-
 /* Scroll Sections */
 .scroll-section {
   opacity: 0;
@@ -200,6 +145,29 @@ nav a:hover { color: #d62828; }
 .scroll-section.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* O nás */
+.about {
+  background-color: rgba(210, 210, 210, 0.3);
+  padding: 60px 40px;
+  text-align: center;  
+}
+
+.about h2 {  
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #d62828;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+
+.about p {
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  line-height: 1.6;
+  color: #494949;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Naše služby */
@@ -273,34 +241,34 @@ nav a:hover { color: #d62828; }
   transform: scale(1.1);
 }
 
-/* O nás */
-.about {
+/* Najdi nás (mapa) */
+.findus {
   background-color: rgba(210, 210, 210, 0.3);
-  padding: 60px 40px;
-  text-align: center;  
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.about h2 {  
+.findus h2 {
   font-size: 28px;
   margin-bottom: 20px;
   color: #d62828;
   text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 
-.about p {
-  font-size: 16px;
-  max-width: 600px;
-  margin: 0 auto 15px auto;
-  line-height: 1.6;
-  color: #494949;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+#leaflet-map {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 /* Kontakt */
 .contact {
-  background-color: rgba(210, 210, 210, 0.3);
+  background-color: white;
   padding: 60px 20px;
   text-align: center;
+  margin-top: 60px;
 }
 
 .contact h2 {
@@ -310,13 +278,134 @@ nav a:hover { color: #d62828; }
   text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 
-/* Leaflet mapa */
-#leaflet-map {
-  width: 300px;        /* pevná šířka */
-  height: 300px;       /* pevná výška – čtverec */
-  margin: 1 auto;      /* vystředění */
-  border-radius: 20px; /* zaoblené rohy */
-  overflow: hidden;    /* aby zaoblení fungovalo s iframe/canvas */
+.contact p {
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #494949;
+}
+
+/* Formulář */
+.contact form.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact form.contact-grid .row {
+  display: flex;
+  gap: 20px;
+}
+
+.contact form.contact-grid .cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact form.contact-grid .full-row {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #494949;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  display: block;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: left;
+}
+
+.contact textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact button {
+  padding: 12px 24px;
+  background-color: #d62828;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-bottom: 15px;
+  align-self: flex-end;
+}
+
+.contact button:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+/* Overlay pro formulář */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+
+.form-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.form-message {
+  width: 10cm;
+  height: 5cm;
+  background: rgba(210, 210, 210, 0.7); /* světle šedá barva jako menu */
+  border-radius: 12px;
+  border: 1px solid rgba(210, 210, 210, 1); /* stejný rámeček jako menu */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* jemný stín jako menu */
+  padding: 20px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-message h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #d62828;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+
+.form-message p {
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
+  color: #494949;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
 }
 
 /* Footer */

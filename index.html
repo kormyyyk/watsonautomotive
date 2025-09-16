@@ -5,17 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Watson Automotive</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     /* --- Leaflet mapa --- */
     #leaflet-map {
-      width: 100%;
-      max-width: 900px;
+      width: 800px;
       height: 500px;
       margin: 0 auto;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
+    }
+
+    /* --- Form overlay a message --- */
+    .form-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 1000;
+    }
+
+    .form-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .form-message {
+      width: 15cm;
+      height: 8cm;
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-message h3 {
+      color: #d62828;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .form-message p {
+      color: #494949;
+      font-size: 16px;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -26,7 +72,7 @@
   <nav>
     <a href="#about">O NÁS</a>   
     <a href="#services">SLUŽBY</a>
-    <a href="#contact">KDE NÁS NAJDETE?</a>
+    <a href="#findus">KDE NÁS NAJDETE?</a>
     <a href="#contact">KONTAKT</a>    
   </nav>
 </header>
@@ -41,7 +87,7 @@
       Specializujeme se na tuning, opravy a údržbu vozidel, lakovací a karosářské práce, a profesionální detailing. Vaše auto je u nás v těch nejlepších rukou.
     </p>
     <div class="buttons">
-      <a href="#contact" class="btn contact-red">Kde nás najdete?</a>
+      <a href="#findus" class="btn contact-red">Kde nás najdete?</a>
     </div>
   </div>
   <div class="wave-container">
@@ -69,81 +115,148 @@
     <div class="service">
       <img src="img/obecnau.png" alt="Obecná údržba" />
       <h3>Obecná údržba</h3>
-      <a href="cenik-obecnau.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
     <div class="service">
       <img src="img/tuning.png" alt="Tuning"/>
       <h3>Tuning</h3>
-      <a href="cenik-tuning.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
     <div class="service">
       <img src="img/detailing.png" alt="Detailing"/>
       <h3>Detailing</h3>
-      <a href="cenik-detailing.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
     <div class="service">
       <img src="img/lakovani.png" alt="Lakování"/>
       <h3>Lakování</h3>
-      <a href="cenik-lakovani.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
     <div class="service">
       <img src="img/karoserie.png" alt="Karosářské práce"/>
       <h3>Karosářské práce</h3>
-      <a href="cenik-karoserie.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
     <div class="service">
       <img src="img/odtah.png" alt="Odtah"/>
       <h3>Odtah</h3>
-      <a href="cenik-odtah.html" class="btn service-btn">Více</a>
+      <a href="cenik.html" class="btn service-btn">Více</a>
     </div>
   </div>
 </section>
 
-<!-- Kontakt -->
-<section class="contact scroll-section" id="contact">
+<!-- Najdi nás -->
+<section class="findus scroll-section" id="findus">
   <h2>KDE NÁS NAJDETE?</h2>
   <div id="leaflet-map"></div>
 </section>
 
+<!-- Kontakt -->
+<section class="contact scroll-section" id="contact">
+  <h2>KONTAKTUJTE NÁS</h2>
+  <form id="contact-form" class="contact-grid">
+    <div class="row">
+      <div class="cell">
+        <label for="name">Jméno a příjmení</label>
+        <input type="text" id="name" placeholder="Vyplňte Vaše jméno a příjmení" required>
+      </div>
+      <div class="cell">
+        <label for="phone">Telefonní číslo</label>
+        <input type="tel" id="phone" placeholder="Vyplňte Vaše telefonní číslo" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell full-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Vyplňte Váš email" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell full-row">
+        <label for="message">Zpráva</label>
+        <textarea id="message" placeholder="Napište nám zprávu" required></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell full-row">
+        <button type="submit" class="btn contact-red">Odeslat</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<!-- Overlay a okno zprávy -->
+<div class="form-overlay" id="form-overlay">
+  <div class="form-message" id="form-message">
+    <h3>VAŠE ZPRÁVA BYLA ÚSPĚŠNĚ ODESLÁNA</h3>
+    <p>Náš tým se na ni podívá a co nejdříve vám odpoví. Děkujeme za trpělivost a zájem o naše služby.</p>
+  </div>
+</div>
+
 <footer>
-  <p>&copy; 2025 Watson Automotive. Všechna práva vyhrazena.</p>
+  <p>Provozovatelem webových stránek je PO Watson Automotive, IČ - 69</p>
 </footer>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Scroll sekce
-    const sections = document.querySelectorAll(".scroll-section");
-    function checkVisibility() {
-      const triggerBottom = window.innerHeight * 0.85;
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if(sectionTop < triggerBottom) {
-          section.classList.add("visible");
-        }
-      });
-    }
-    window.addEventListener("scroll", checkVisibility);
-    checkVisibility();
-
-    // --- Leaflet mapa s obrázkem ---
-    var imageWidth = 2000;  // šířka obrázku v px
-    var imageHeight = 2000; // výška obrázku v px
-    var map = L.map('leaflet-map', {
-        crs: L.CRS.Simple,
-        minZoom: -1,
-        maxZoom: 3,
-        zoomControl: true
+  // Scroll sekce
+  const sections = document.querySelectorAll(".scroll-section");
+  function checkVisibility() {
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if(sectionTop < triggerBottom) section.classList.add("visible");
     });
+  }
+  window.addEventListener("scroll", checkVisibility);
+  checkVisibility();
 
-    var bounds = [[280,-515], [imageHeight, imageWidth]];
-    L.imageOverlay('img/mapa.png', bounds).addTo(map);
-    map.fitBounds(bounds);
+  // --- Leaflet mapa ---
+  var imageWidth = 2000;  
+  var imageHeight = 2000; 
+  var map = L.map('leaflet-map', {
+      crs: L.CRS.Simple,
+      minZoom: -1,
+      maxZoom: 3,
+      zoomControl: true
+  });
+  var bounds = [[280,-515], [imageHeight, imageWidth]];
+  L.imageOverlay('img/mapa.png', bounds).addTo(map);
+  map.setMaxBounds(bounds);
+  map.fitBounds(bounds);
+  L.marker([imageHeight/2, imageWidth/2]).addTo(map)
+    .bindPopup("<b>Autodílna, č.p. 1083</b>");
 
-    L.marker([imageHeight/2, imageWidth/2]).addTo(map)
-    .openPopup();
+  // --- Discord webhook ---
+  const form = document.getElementById("contact-form");
+  const overlay = document.getElementById("form-overlay");
+  const messageBox = document.getElementById("form-message");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+    const phone = document.getElementById("phone").value;
+
+    const webhookURL = "https://discord.com/api/webhooks/1417532481195737089/sIzVdccRUOzvc48IJgo6aYZICT8zPt59cwg0TzxudYP6tFQrNCSbevXgQgNJ2NaHYVpR";
+
+    fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content: `📩 Nová zpráva z webu:\n👤 Jméno: ${name}\n📧 Email: ${email}\n💬 Zpráva: ${message}\n📞 Telefon: ${phone}`
+      })
+    }).then(res => {
+      overlay.classList.add("show");
+      if(res.ok) form.reset();
+      setTimeout(() => overlay.classList.remove("show"), 9000);
+    }).catch(() => {
+      overlay.classList.add("show");
+      setTimeout(() => overlay.classList.remove("show"), 9000);
+    });
+  });
 });
 </script>
 
