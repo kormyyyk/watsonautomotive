@@ -221,12 +221,18 @@ document.addEventListener("DOMContentLoaded", function() {
       maxZoom: 3,
       zoomControl: true
   });
-  var bounds = [[280,-515], [imageHeight, imageWidth]];
+
+  var bounds = [[0,0], [imageHeight, imageWidth]];
   L.imageOverlay('img/mapa.png', bounds).addTo(map);
   map.setMaxBounds(bounds);
-  map.fitBounds(bounds);
-  L.marker([imageHeight/2, imageWidth/2]).addTo(map)
-    .bindPopup("<b>Autodílna, č.p. 1083</b>");
+
+  // Marker na waypoint
+  var waypoint = [835, 1203]; // sem dej souřadnice markeru
+  L.marker(waypoint).addTo(map)
+    .bindPopup("<b>Dillimore, Autodílna, č.p. 1083</b>");
+
+  // Centrování mapy na waypoint
+  map.setView(waypoint, 0);
 
   // --- Discord webhook ---
   const form = document.getElementById("contact-form");
