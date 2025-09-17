@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
   map.setMaxBounds(bounds);
 
   // Marker na waypoint
-  var waypoint = [835, 1203]; // sem dej souřadnice markeru
+  var waypoint = [835, 1203]; 
   L.marker(waypoint).addTo(map)
     .bindPopup("<b>Dillimore, Autodílna, č.p. 1083</b>");
 
@@ -237,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // --- Discord webhook ---
   const form = document.getElementById("contact-form");
   const overlay = document.getElementById("form-overlay");
-  const messageBox = document.getElementById("form-message");
 
   form.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -252,7 +251,13 @@ document.addEventListener("DOMContentLoaded", function() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        content: `📩 Nová zpráva z webu:\n👤 Jméno: ${name}\n📧 Email: ${email}\n💬 Zpráva: ${message}\n📞 Telefon: ${phone}`
+        content: `📩 Nová zpráva z webu
+\`\`\`
+Jméno a příjmení - ${name}
+Email - ${email}
+Telefon - ${phone}
+Zpráva - ${message}
+\`\`\``
       })
     }).then(res => {
       overlay.classList.add("show");
