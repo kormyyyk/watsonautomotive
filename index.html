@@ -221,17 +221,12 @@ document.addEventListener("DOMContentLoaded", function() {
       maxZoom: 3,
       zoomControl: true
   });
-
   var bounds = [[0,0], [imageHeight, imageWidth]];
   L.imageOverlay('img/mapa.png', bounds).addTo(map);
   map.setMaxBounds(bounds);
-
-  // Marker na waypoint
   var waypoint = [835, 1203]; 
   L.marker(waypoint).addTo(map)
     .bindPopup("<b>Dillimore, Autodílna, č.p. 1083</b>");
-
-  // Centrování mapy na waypoint
   map.setView(waypoint, 0);
 
   // --- Discord webhook ---
@@ -251,21 +246,34 @@ document.addEventListener("DOMContentLoaded", function() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        content: `📩 Nová zpráva z webu
-\`\`\`
-Jméno a příjmení - ${name}
-Email - ${email}
-Telefon - ${phone}
-Zpráva - ${message}
-\`\`\``
+        embeds: [
+          {
+            title: "Nová zpráva z webu",
+            color: 0xd62828,
+            fields: [
+              { name: "Jméno a příjmení", value: name, inline: false },
+              { name: "Email", value: email, inline: false },
+              { name: "Telefonní číslo", value: phone, inline: false },
+              { name: "Zpráva", value: message, inline: false }
+            ],
+            footer: { text: "Watson Automotive – kontaktní formulář" },
+            timestamp: new Date().toISOString()
+          }
+        ]
       })
-    }).then(res => {
-      overlay.classList.add("show");
-      if(res.ok) form.reset();
-      setTimeout(() => overlay.classList.remove("show"), 9000);
-    }).catch(() => {
-      overlay.classList.add("show");
-      setTimeout(() => overlay.classList.remove("show"), 9000);
+    })
+    .then(response => {
+      if(response.ok) {
+        overlay.classList.add("show");
+        form.reset();
+        setTimeout(() => overlay.classList.remove("show"), 5000);
+      } else {
+        alert("Nastala chyba při odesílání zprávy. Zkuste to prosím znovu.");
+      }
+    })
+    .catch(error => {
+      console.error("Chyba:", error);
+      alert("Nastala chyba při odesílání zprávy. Zkuste to prosím znovu.");
     });
   });
 });

@@ -56,6 +56,7 @@ nav a:hover { color: #d62828; }
   align-items: center;
   text-align: center;
   overflow: visible;
+  margin-top: 0;
 }
 
 .hero-background {
@@ -241,29 +242,7 @@ nav a:hover { color: #d62828; }
   transform: scale(1.1);
 }
 
-/* Najdi nás (mapa) */
-.findus {
-  background-color: rgba(210, 210, 210, 0.3);
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.findus h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #d62828;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-}
-
-#leaflet-map {
-  width: 800px;
-  height: 500px;
-  margin: 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* Kontakt */
+/* Kontakt + formulář */
 .contact {
   background-color: white;
   padding: 60px 20px;
@@ -355,57 +334,76 @@ nav a:hover { color: #d62828; }
   transform: scale(1.05);
 }
 
-/* Overlay pro formulář */
-.form-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  z-index: 1000;
+/* Kde nás najdete / mapa */
+.findus {
+  background-color: rgba(210, 210, 210, 0.3); /* stejné jako .about */
+  padding: 60px 40px; /* stejné jako .about */
+  text-align: center;  
 }
 
-.form-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.form-message {
-  width: 10cm;
-  height: 5cm;
-  background: rgba(210, 210, 210, 0.7); /* světle šedá barva jako menu */
-  border-radius: 12px;
-  border: 1px solid rgba(210, 210, 210, 1); /* stejný rámeček jako menu */
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* jemný stín jako menu */
-  padding: 20px 30px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.form-message h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+.findus h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
   color: #d62828;
   text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-
-.form-message p {
-  font-size: 16px;
-  max-width: 600px;
-  line-height: 1.6;
-  color: #494949;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
+
+#leaflet-map {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* --- TABULKY CENÍK --- */
+.pricing {
+  background-color: #fff;
+  padding: 60px 50px;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #d62828;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  margin-top: 70px; 
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.price-table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 830px;
+  border-collapse: collapse;
+  font-size: 16px;
+  background-color: #fafafa;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.price-table thead {
+  background-color: #f2f2f2;
+}
+
+.price-table th, .price-table td {
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.price-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Speciální sloupec pro ceny */
+.price-table td.price-cell {
+  width: 150px;        
+  white-space: nowrap; 
 }
 
 /* Footer */
